@@ -1,0 +1,11 @@
+@use '@/assets/styles/mixins.scss' as *;
+
+.exception-wrapper {
+  height: 100vh;
+  @include flex-center;
+
+  .ant-result {
+    margin-top: -100px;
+    flex-direction: column;
+  }
+}

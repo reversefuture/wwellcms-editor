@@ -1,0 +1,23 @@
+body,
+html {
+  overscroll-behavior-y: contain;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+em {
+  font-style: normal;
+}

@@ -1,0 +1,132 @@
+@use '../../assets/styles/variables.scss' as *;
+@use 'sass:list';
+
+.home-index {
+  display: block !important;
+}
+
+// SystemInfo
+.system-data {
+  .item-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+
+    em {
+      color: #000;
+      font-weight: 500;
+    }
+  }
+
+  .mem .ant-card-body {
+    text-align: center;
+    .surplus {
+      margin-top: 10px;
+    }
+  }
+}
+
+// PanelGroup
+.panel-group {
+  margin-bottom: 15px;
+  $colors: #f50 #34bfa3 #36a3f7 #40c9c6;
+  .icon svg {
+    width: 75px;
+    height: 75px;
+  }
+
+  .item {
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        .anticon {
+          color: list.nth($colors, $i);
+        }
+
+        &:hover {
+          .anticon {
+            color: #fff;
+            & > svg {
+              background: list.nth($colors, $i);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ant-statistic-content {
+    text-align: center;
+  }
+
+  .block-item {
+    display: flex;
+    padding: 20px 20px 20px 15px;
+    background: #fff;
+    cursor: pointer;
+
+    .icon {
+      flex: 1;
+      text-align: left;
+      align-self: center;
+
+      & > svg {
+        padding: 15px;
+        border-radius: 5px;
+        transition: 0.1s linear;
+      }
+    }
+
+    .data {
+      padding-top: 10px;
+      text-align: right;
+      align-self: center;
+      font-size: 26px;
+      color: #000;
+      font-weight: bold;
+      .title {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+// AmountChart
+.amount-chart {
+  position: relative;
+  background: #fff;
+  margin-top: 15px;
+
+  .title {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 15px 0 15px 30px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 17px;
+      left: 16px;
+      height: 30px;
+      width: 3px;
+      background-color: $theme-color;
+    }
+  }
+
+  .date-picker {
+    margin-left: 20px;
+  }
+
+  .no-data {
+    height: 399px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
