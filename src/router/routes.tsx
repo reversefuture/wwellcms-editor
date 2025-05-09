@@ -97,7 +97,7 @@ export function MainRoutes() {
                 <PrivateRoute
                   element={Base}
                   meta={{
-                    title: '个人中心',
+                    title: 'Account',
                     requiresAuth: true,
                   }}
                 />
@@ -109,7 +109,7 @@ export function MainRoutes() {
                 <PrivateRoute
                   element={InnerMessage}
                   meta={{
-                    title: '消息中心',
+                    title: 'Messages',
                     requiresAuth: true,
                   }}
                 />
@@ -121,7 +121,7 @@ export function MainRoutes() {
                 <PrivateRoute
                   element={Notification}
                   meta={{
-                    title: '消息通知',
+                    title: 'Notification',
                     requiresAuth: true,
                   }}
                 />
@@ -133,7 +133,7 @@ export function MainRoutes() {
                 <PrivateRoute
                   element={Account}
                   meta={{
-                    title: '账号设置',
+                    title: 'Account settings',
                     requiresAuth: true,
                   }}
                 />

@@ -11,6 +11,13 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'happy-dom',

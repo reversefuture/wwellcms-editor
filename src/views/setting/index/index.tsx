@@ -21,12 +21,12 @@ const SettingIndexPage: React.FC = function () {
     }
   }, [location.pathname])
 
-  const onClick: MenuProps['onClick'] = (e) => {
+  const onClick: MenuProps['onClick'] = e => {
     navigate(e.key)
   }
 
   const items: MenuProps['items'] = useMemo(() => {
-    return SETTING_SIDER_MENU_LIST.map((item) => {
+    return SETTING_SIDER_MENU_LIST.map(item => {
       const data: any = {
         key: item.path || item.name,
         label: item.name,

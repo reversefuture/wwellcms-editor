@@ -22,23 +22,23 @@ import {
 
 const { Header } = Layout
 const popoverList = [
-  { name: '个人中心', path: '/home/setting/base' },
-  { name: '消息通知', path: '/home/setting/notification' },
-  { name: '账号设置', path: '/home/setting/account' },
+  { name: 'Account', path: '/home/setting/base' },
+  { name: 'Messages', path: '/home/setting/notification' },
+  { name: 'Account settings', path: '/home/setting/account' },
 ]
 
 type Props = HomeMainState
 
 const PopoverContent = (
   <div className="popover-content">
-    {popoverList.map((el) => (
+    {popoverList.map(el => (
       <Link to={el.path} key={el.name} className="ls">
         {el.name}
       </Link>
     ))}
     <div className="ls sign-out" onClick={logout}>
       <PoweroffOutlined style={{ fontSize: '14px', marginRight: '5px' }} />
-      退出
+      Log out
     </div>
   </div>
 )
@@ -47,10 +47,10 @@ const HomeHeader: React.FC<Props> = function ({ collapsed, setCollapsed }) {
   const [messageList, setMessageList] = useState([])
   const [unReadCount, setUnReadCount] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const { userInfo } = useAppSelector((state) => state.user)
+  const { userInfo } = useAppSelector(state => state.user)
 
   useEffect(() => {
-    serviceGetInnerMessage({ pageSize: 5 }).then((res) => {
+    serviceGetInnerMessage({ pageSize: 5 }).then(res => {
       let count = 0
       const data = res.rows.map((item: any) => {
         item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')
@@ -90,11 +90,11 @@ const HomeHeader: React.FC<Props> = function ({ collapsed, setCollapsed }) {
         )}
       </div>
     ),
-    [messageList],
+    [messageList]
   )
 
   function handleFullscreen() {
-    setIsFullscreen((isFullscreen) => {
+    setIsFullscreen(isFullscreen => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       isFullscreen ? exitFullscreen() : fullscreen()
       return !isFullscreen

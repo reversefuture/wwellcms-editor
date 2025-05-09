@@ -42,18 +42,18 @@ export const HOME_SIDER_MENU_LIST = [
 export const SETTING_SIDER_MENU_LIST = [
   {
     path: '/home/setting/base',
-    name: '个人中心',
+    name: 'Account',
   },
   {
     path: '/home/setting/innerMessage',
-    name: '消息中心',
+    name: 'Messages',
   },
   {
     path: '/home/setting/notification',
-    name: '消息通知',
+    name: 'Notification',
   },
   {
     path: '/home/setting/account',
-    name: '账号设置',
+    name: 'Account settings',
   },
 ]

@@ -1,6 +1,3 @@
-/**
- * 个人中心
- */
 import React from 'react'
 import './style.scss'
 import Avatar from '@/components/avatar'
@@ -11,7 +8,7 @@ import { useAppSelector } from '@/hooks'
 const { Meta } = Card
 
 const BasePage: React.FC = function () {
-  const userInfo = useAppSelector((state) => state.user.userInfo)
+  const userInfo = useAppSelector(state => state.user.userInfo)
 
   const MetaDesc = (
     <div className="meta-desc">
@@ -27,7 +24,7 @@ const BasePage: React.FC = function () {
   return (
     <div className="setting-base">
       <Divider orientation="left" plain>
-        个人中心
+        Account
       </Divider>
       <Card
         style={{ width: 370 }}
