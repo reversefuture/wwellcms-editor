@@ -6,22 +6,22 @@ import AppRoute from './router'
 import 'antd/dist/reset.css'
 import { Provider } from 'react-redux'
 import { ConfigProvider } from 'antd'
-import zhCN from 'antd/locale/zh_CN'
+import enUS from 'antd/locale/en_US'
 import dayjs from 'dayjs'
-import zh from 'dayjs/locale/zh-cn'
+import en from 'dayjs/locale/en'
 import store from '@/store'
 import 'tailwindcss/tailwind.css'
 
 // https://ant.design/docs/react/v5-for-19-cn antd@v6 移除
 // import '@ant-design/v5-patch-for-react-19'
 
-dayjs.locale(zh)
+dayjs.locale(en)
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <Provider store={store}>
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider locale={enUS}>
       <AppRoute />
     </ConfigProvider>
   </Provider>

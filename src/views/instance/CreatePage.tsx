@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Button, Form, Input, Select, Upload, Space } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import type { UploadProps } from 'antd'
+import EditableText from './EditableText'
+import EventComponent from './Event'
 
 interface Speaker {
   id: string
@@ -11,41 +13,13 @@ interface Speaker {
   bio: string
 }
 
-interface Event {
+export interface Event {
   id: string
   image: string | null
   title: string
   speaker: string
   language: string
   description: string
-}
-
-const EditableText: React.FC<{
-  value: string
-  onChange: (value: string) => void
-  maxLength?: number
-  rows?: number
-}> = ({ value, onChange, maxLength, rows = 1 }) => {
-  const [isEditing, setIsEditing] = useState(false)
-
-  return isEditing ? (
-    <Input.TextArea
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      onBlur={() => setIsEditing(false)}
-      maxLength={maxLength}
-      rows={rows}
-      autoFocus
-      className="w-full"
-    />
-  ) : (
-    <div
-      className="editable-text p-2 hover:border hover:border-dashed hover:border-gray-300 cursor-text"
-      onClick={() => setIsEditing(true)}
-    >
-      {value || 'Click to edit'}
-    </div>
-  )
 }
 
 const SpeakerComponent: React.FC<{
@@ -74,86 +48,6 @@ const SpeakerComponent: React.FC<{
             onChange={value => onUpdate(speaker.id, 'bio', value)}
             maxLength={50}
             rows={3}
-          />
-        </Form.Item>
-      </Form>
-    </div>
-  )
-}
-
-const EventComponent: React.FC<{
-  event: Event
-  onUpdate: (id: string, field: keyof Event, value: string) => void
-  onImageUpload: (id: string, file: File) => void
-}> = ({ event, onUpdate, onImageUpload }) => {
-  const uploadProps: UploadProps = {
-    beforeUpload: file => {
-      onImageUpload(event.id, file)
-      return false // Prevent default upload behavior
-    },
-    showUploadList: false,
-  }
-
-  return (
-    <div className="p-4 mb-4 bg-gray-50 rounded-lg">
-      <Form layout="vertical">
-        <Form.Item label="Image">
-          {event.image ? (
-            <img
-              src={event.image}
-              alt="Event"
-              className="w-32 h-32 object-cover mb-2 cursor-pointer"
-              onClick={() =>
-                document.getElementById(`upload-${event.id}`)?.click()
-              }
-            />
-          ) : (
-            <Upload {...uploadProps}>
-              <Button icon={<UploadOutlined />}>Upload Image</Button>
-            </Upload>
-          )}
-          <input
-            id={`upload-${event.id}`}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={e => {
-              if (e.target.files?.[0]) {
-                onImageUpload(event.id, e.target.files[0])
-              }
-            }}
-          />
-        </Form.Item>
-        <Form.Item label="Title">
-          <EditableText
-            value={event.title}
-            onChange={value => onUpdate(event.id, 'title', value)}
-            rows={2}
-          />
-        </Form.Item>
-        <Form.Item label="Speaker">
-          <EditableText
-            value={event.speaker}
-            onChange={value => onUpdate(event.id, 'speaker', value)}
-          />
-        </Form.Item>
-        <Form.Item label="Language">
-          <Select
-            value={event.language}
-            onChange={value => onUpdate(event.id, 'language', value)}
-            options={[
-              { value: 'English', label: 'English' },
-              { value: 'Chinese', label: 'Chinese' },
-              { value: 'Spanish', label: 'Spanish' },
-            ]}
-            className="w-full"
-          />
-        </Form.Item>
-        <Form.Item label="Description">
-          <EditableText
-            value={event.description}
-            onChange={value => onUpdate(event.id, 'description', value)}
-            maxLength={10}
           />
         </Form.Item>
       </Form>
@@ -203,20 +97,8 @@ const CreatePage: React.FC = () => {
     )
   }
 
-  const handleImageUpload = (id: string, file: File) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      setEvents(
-        events.map(event =>
-          event.id === id ? { ...event, image: reader.result as string } : event
-        )
-      )
-    }
-    reader.readAsDataURL(file)
-  }
-
   return (
-    <div className="p-8 max-w-4xl mx-auto">
+    <div className="min-w-[600px] mx-auto">
       <h1 className="text-2xl font-bold mb-6">Event Editor</h1>
       <Space direction="vertical" size="large" className="w-full">
         <div>
@@ -239,7 +121,7 @@ const CreatePage: React.FC = () => {
               key={event.id}
               event={event}
               onUpdate={updateEvent}
-              onImageUpload={handleImageUpload}
+              // onImageUpload={handleImageUpload}
             />
           ))}
           <Button type="primary" onClick={addEvent} className="mt-2">
