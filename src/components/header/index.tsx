@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import './style.scss'
-import Avatar from '@/components/avatar'
 import dayjs from 'dayjs'
 import config from '@/config'
 import { Layout, Badge, Popover, Empty } from 'antd'
@@ -19,6 +18,7 @@ import {
   FullscreenExitOutlined,
   FullscreenOutlined,
 } from '@ant-design/icons'
+import Avatar from '../avatar'
 
 const { Header } = Layout
 const popoverList = [
