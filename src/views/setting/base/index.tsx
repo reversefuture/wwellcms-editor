@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.scss'
-import Avatar from '@/components/avatar'
+import Avatar from '@/components/Avatar'
 import userPoster from '@/assets/img/common/user-poster.png'
 import { Card, Divider } from 'antd'
 import { useAppSelector } from '@/hooks'

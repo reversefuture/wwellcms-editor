@@ -18,7 +18,7 @@ import {
   FullscreenExitOutlined,
   FullscreenOutlined,
 } from '@ant-design/icons'
-import Avatar from '../avatar'
+import Avatar from '../Avatar'
 
 const { Header } = Layout
 const popoverList = [
