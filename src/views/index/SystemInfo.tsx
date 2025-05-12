@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import './style.scss'
-import bytes from 'bytes'
 import CONFIG from '@/config'
 import { Row, Col, Card, Progress, Empty } from 'antd'
 import { totalPercentage, formatDateTime } from '@/utils'
@@ -47,7 +46,7 @@ const System: React.FC<Props> = ({ systemInfo }) => {
   }, [countdown])
 
   useEffect(() => {
-    serviceGetInnerMessage({ pageSize: 5 }).then((res) => {
+    serviceGetInnerMessage({ pageSize: 5 }).then(res => {
       setLoading(false)
       setMessageList(res.rows)
     })
@@ -90,7 +89,8 @@ const System: React.FC<Props> = ({ systemInfo }) => {
         )}
       </Card>
       <Card
-        title={`内存使用率(${bytes(systemInfo.totalmem)})`}
+        // title={`内存使用率(${bytes(systemInfo.totalmem)})`}
+        title={`内存使用率(50%)`}
         hoverable
         className="mem"
       >
@@ -98,9 +98,10 @@ const System: React.FC<Props> = ({ systemInfo }) => {
           type="circle"
           percent={memPercentage}
           strokeColor={statusColor(memPercentage)}
-          format={(percent) => percent + '%'}
+          format={percent => percent + '%'}
         />
-        <div className="surplus">剩余{bytes(systemInfo.freemem)}</div>
+        {/* <div className="surplus">剩余{bytes(systemInfo.freemem)}</div> */}
+        <div className="surplus">剩余50%</div>
       </Card>
     </div>
   )

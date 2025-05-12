@@ -61,7 +61,7 @@ export default function () {
         password: md5(values.password.trim()),
         code: values.code.trim(),
       })
-        .then((res) => {
+        .then(res => {
           setLoading(false)
           dispatch(SET_USER_INFO(res.user))
           navigate(redirectUrl, { replace: true })
