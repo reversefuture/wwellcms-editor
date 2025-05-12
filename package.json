@@ -9,7 +9,7 @@
     "start": "vite",
     "start:prod": "vite --mode prod",
     "build": "tsc && vite build --mode prod",
-    "buildlog": "pwd && ls && tsc && vite build --mode prod",
+    "buildlog": "pwd && ls && vite build --mode prod",
     "serve": "vite preview",
     "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix",
