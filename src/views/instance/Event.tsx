@@ -3,9 +3,17 @@ import { InboxOutlined, CloseOutlined } from '@ant-design/icons'
 import { Form, Select, Upload, message } from 'antd'
 import type { UploadProps } from 'antd'
 import EditableText from './EditableText'
-import { Event } from './CreatePage'
 
 const { Dragger } = Upload
+
+export interface Event {
+  id: string
+  image: string | null
+  title: string
+  speaker: string
+  language: string
+  description: string
+}
 
 const EventComponent: React.FC<{
   event: Event

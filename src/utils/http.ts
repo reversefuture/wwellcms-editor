@@ -19,10 +19,11 @@ function handleError(error: any) {
   const status =
     error.status || error.response?.data?.status || error.code || ''
   const errorMsg = error.response?.data?.message || error.message || ''
-  notification.error({
-    message: 'Error：' + status,
-    description: errorMsg,
-  })
+  // notification.error({
+  //   message: 'Error：' + status,
+  //   description: errorMsg,
+  // })
+  console.error(errorMsg)
 }
 
 interface IAxiosInstance {
@@ -30,7 +31,7 @@ interface IAxiosInstance {
   post(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig,
+    config?: AxiosRequestConfig
   ): Promise<Record<string, any>>
 }
 
@@ -69,7 +70,7 @@ httpInstance.interceptors.request.use(
   function (error) {
     handleError(error)
     return Promise.reject(error)
-  },
+  }
 )
 
 httpInstance.interceptors.response.use(
@@ -91,7 +92,7 @@ httpInstance.interceptors.response.use(
 
     handleError(error)
     return Promise.reject(error)
-  },
+  }
 )
 
 export default httpInstance

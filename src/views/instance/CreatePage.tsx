@@ -1,59 +1,7 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom/client'
 import { Button, Form, Input, Select, Upload, Space } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
-import type { UploadProps } from 'antd'
-import EditableText from './EditableText'
-import EventComponent from './Event'
-
-interface Speaker {
-  id: string
-  name: string
-  credentials: string
-  bio: string
-}
-
-export interface Event {
-  id: string
-  image: string | null
-  title: string
-  speaker: string
-  language: string
-  description: string
-}
-
-const SpeakerComponent: React.FC<{
-  speaker: Speaker
-  onUpdate: (id: string, field: keyof Speaker, value: string) => void
-}> = ({ speaker, onUpdate }) => {
-  return (
-    <div className="p-4 mb-4 bg-gray-50 rounded-lg">
-      <Form layout="vertical">
-        <Form.Item label="Speaker Name">
-          <EditableText
-            value={speaker.name}
-            onChange={value => onUpdate(speaker.id, 'name', value)}
-          />
-        </Form.Item>
-        <Form.Item label="Credentials">
-          <EditableText
-            value={speaker.credentials}
-            onChange={value => onUpdate(speaker.id, 'credentials', value)}
-            maxLength={10}
-          />
-        </Form.Item>
-        <Form.Item label="Bio">
-          <EditableText
-            value={speaker.bio}
-            onChange={value => onUpdate(speaker.id, 'bio', value)}
-            maxLength={50}
-            rows={3}
-          />
-        </Form.Item>
-      </Form>
-    </div>
-  )
-}
+import EventComponent, { Event } from './Event'
+import SpeakerComponent, { Speaker } from './Speaker'
 
 const CreatePage: React.FC = () => {
   const [speakers, setSpeakers] = useState<Speaker[]>([])

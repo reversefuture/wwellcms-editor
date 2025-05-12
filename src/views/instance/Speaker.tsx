@@ -1,66 +1,46 @@
-import React, { useState } from 'react';
-import { Input, Button } from 'antd';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom/client'
+import { Button, Form, Input, Select, Upload, Space } from 'antd'
+import EditableText from './EditableText'
 
-const { TextArea } = Input;
+export interface Speaker {
+  id: string
+  name: string
+  credentials: string
+  bio: string
+}
 
-const SpeakerComponent: React.FC = () => {
-  const [name, setName] = useState<string>('');
-  const [credentials, setCredentials] = useState<string>('');
-  const [bio, setBio] = useState<string>('');
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-
-  const handleEditClick = () => {
-    setIsEditing(!isEditing);
-  };
-
+const SpeakerComponent: React.FC<{
+  speaker: Speaker
+  onUpdate: (id: string, field: keyof Speaker, value: string) => void
+}> = ({ speaker, onUpdate }) => {
   return (
-    <div className="p-4 border rounded-lg shadow-sm">
-      <div onClick={handleEditClick} className="hover:bg-gray-100 p-2 rounded">
-        {isEditing ? (
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Speaker Name"
-            className="mb-2"
+    <div className="p-4 mb-4 bg-gray-50 rounded-lg">
+      <Form layout="horizontal">
+        <Form.Item label="Speaker Name">
+          <EditableText
+            value={speaker.name}
+            onChange={value => onUpdate(speaker.id, 'name', value)}
           />
-        ) : (
-          <h2 className="text-xl font-bold">{name}</h2>
-        )}
-      </div>
-
-      <div onClick={handleEditClick} className="hover:bg-gray-100 p-2 rounded">
-        {isEditing ? (
-          <Input
-            value={credentials}
-            onChange={(e) => setCredentials(e.target.value)}
-            placeholder="Credentials"
+        </Form.Item>
+        <Form.Item label="Credentials">
+          <EditableText
+            value={speaker.credentials}
+            onChange={value => onUpdate(speaker.id, 'credentials', value)}
             maxLength={10}
-            className="mb-2"
           />
-        ) : (
-          <p className="text-gray-700">{credentials}</p>
-        )}
-      </div>
-
-      <div onClick={handleEditClick} className="hover:bg-gray-100 p-2 rounded">
-        {isEditing ? (
-          <TextArea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            placeholder="Bio"
+        </Form.Item>
+        <Form.Item label="Bio">
+          <EditableText
+            value={speaker.bio}
+            onChange={value => onUpdate(speaker.id, 'bio', value)}
             maxLength={50}
-            className="mb-2"
+            rows={3}
           />
-        ) : (
-          <p className="text-gray-700">{bio}</p>
-        )}
-      </div>
-
-      <Button type="primary" onClick={() => console.log('Add Speaker')}>
-        Add Speaker
-      </Button>
+        </Form.Item>
+      </Form>
     </div>
-  );
-};
+  )
+}
 
-export default SpeakerComponent;
+export default SpeakerComponent
